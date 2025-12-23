@@ -21,7 +21,7 @@ This script is not complex and you can modify it to your needs
 
 ## ⚠️ Information
 
-* The optional script `apt_autopatch_assume_yes.sh` adds an "assume yes / -y" to `apt full-upgrade`
+* The optional script `apt_autopatch_assume_yes.sh` adds an "assume yes / -y" to `apt full-upgrade`  
   and `apt --purge autoremove && sudo apt clean`
   
 
