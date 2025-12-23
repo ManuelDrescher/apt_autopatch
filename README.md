@@ -16,7 +16,8 @@
     * Do nothing
 
 ---
-This script is not complex and you can modify it to your needs
+* This script is not complex and you can modify it to your needs
+* The script can be aborted on every step
 ---
 
 ## ⚠️ Information
