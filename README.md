@@ -1,32 +1,26 @@
-## 💾 apt_autopatch für Debian/Debian based OS
+## 💾 apt_autopatch for Debian/Debian-based OS
 
 * This simple, but effective script contains:
   * Show hostname
-  * Shot free size disk space on /
-  * Updates package list (apt update)
-  * Shows upgradeable packages (only if present)
-  * Upgrades the system (apt full-upgrade)
-  * Cleans up the system (apt --purge autoremove && sudo apt clean)
-  * Trims the file system (fstrim -av)
-  * Checks if a reboot is required, if yes:
+  * Show free disk space on /
+  * Update package list (`apt update`)
+  * Show upgradeable packages (only if present)
+    * A key must be pressed if upgradeable packages are available
+    * This allows you to preview the packages before patching
+  * Upgrade the system (`apt full-upgrade`)
+  * Clean up the system (`apt --purge autoremove && sudo apt clean`)
+  * Trim the file system (`fstrim -av`)
+  * Check if a reboot is required, if yes:
     * Reboot now
     * Reboot to a specific time
     * Do nothing
 
 ---
-
-## 🚀 Bento PDF deployen
-
+This script is not complex and you can modify it to your needs
 ---
 
-## ⚙️ Erreichbarkeit (Port)
+## ⚠️ Information
 
-* **Reguläre Erreichbarkeit (Web-GUI):** Erreichbar unter Port **8080/TCP**.
-
----
-
-## ⚠️ Wichtiger Sicherheitshinweis
-
-* **Besitzt keinen Login**.
-* Die Anwendung **muss in jedem Fall über Cloudflare und/oder Basic Auth abgesichert werden**!
+* The optional script `apt_autopatch_assume_yes.sh` adds an "assume yes / -y" to `apt full-upgrade` and `apt --purge autoremove && sudo apt clean`
+  
 
