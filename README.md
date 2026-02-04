@@ -22,7 +22,7 @@
 
 ## ⚠️ Information
 
-* The optional script `apt_autopatch_assume_yes.sh` adds an "assume yes / -y" to `sudo apt full-upgrade`  
+* The optional script `apt_autopatch_assume_yes_quit.sh` adds an "assume yes and quiet" / -yq" to `sudo apt full-upgrade`  
   and `sudo apt --purge autoremove && sudo apt clean`
   
 
