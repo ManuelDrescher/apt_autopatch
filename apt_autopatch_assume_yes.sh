@@ -56,13 +56,13 @@ echo
 # Upgrade the system
 echo -e "${YW}--- Upgrading system ---${CL}"
 sleep 1
-sudo apt full-upgrade -y
+sudo apt -yq full-upgrade
 echo
 
 # Clean up the system
 echo -e "${BL}--- Cleaning up system ---${CL}"
 sleep 1
-sudo apt --purge autoremove -y && sudo apt clean
+sudo apt -yq --purge autoremove -y && sudo apt clean
 echo
 
 # Trim file system (SSD optimization)
