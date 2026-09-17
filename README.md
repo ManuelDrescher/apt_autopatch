@@ -4,9 +4,10 @@
   * Show hostname
   * Show free disk space on /
   * Update package list (`sudo apt update`)
-  * Show upgradeable packages (only if present)
+  * Show upgradeable packages & patch details (only if present)
+    * Displays the summary of patch details for each package via `apt-get changelog`
     * A key must be pressed if upgradeable packages are available
-    * This allows you to preview the packages before patching
+    * This allows you to preview the packages before patching    
   * Upgrade the system (`sudo apt full-upgrade`)
   * Clean up the system (`sudo apt --purge autoremove && sudo apt clean`)
   * Trim the file system (`sudo fstrim -av`)
