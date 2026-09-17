@@ -37,13 +37,19 @@ sleep 1
 sudo apt update
 echo
 
-# Show upgradeable packages (only if present)
-echo -e "${BL}--- Upgradeable packages ---${CL}"
+# Show upgradeable packages & details (only if present)
+echo -e "${BL}--- Upgradeable packages & details ---${CL}"
 sleep 1
-UPGRADEABLE_PACKAGES=$(sudo apt list --upgradeable 2>/dev/null)
-echo "$UPGRADEABLE_PACKAGES"
-echo
-if [ $(echo "$UPGRADEABLE_PACKAGES" | wc -l) -gt 1 ]; then
+PACKAGES=$(apt list --upgradeable 2>/dev/null | awk -F/ 'NR>1 && $1 != "" {print $1}')
+if [ -n "$PACKAGES" ]; then
+    for PKG in $PACKAGES; do
+        echo -e "${YW}Package: $PKG${CL}"
+        DESC=$(apt-cache show "$PKG" 2>/dev/null | awk -F': ' '/^Description:/ {print $2; exit}')
+        echo -e "${GN}Purpose:${CL} ${DESC:-Keine Beschreibung verfügbar}"
+        echo -e "${BL}Changes:${CL}"
+        apt-get changelog "$PKG" 2>/dev/null | sed -e '/^ -- /q' | grep -E '^\s+\*' | head -n 8 || echo "  No details available."
+        echo "----------------------------------------"
+    done
     echo "Press [ENTER] or any key to continue (CTRL+C to cancel)"
     read -r -n 1 -s
     echo
