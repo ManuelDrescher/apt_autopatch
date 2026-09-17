@@ -19,10 +19,3 @@
 * This script is not complex and can easily be modified to your needs
 * The script can be aborted on every step
 ---
-
-## ⚠️ Information
-
-* The optional script `apt_autopatch_assume_yes_quit.sh` adds an "assume yes and quiet" / -yq" to `sudo apt full-upgrade`  
-  and `sudo apt --purge autoremove && sudo apt clean`
-  
-
