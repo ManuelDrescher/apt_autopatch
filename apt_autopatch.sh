@@ -44,8 +44,9 @@ PACKAGES=$(apt list --upgradeable 2>/dev/null | awk -F/ 'NR>1 && $1 != "" {print
 if [ -n "$PACKAGES" ]; then
     for PKG in $PACKAGES; do
         echo -e "${YW}Package: $PKG${CL}"
-        DESC=$(apt-cache show "$PKG" 2>/dev/null | awk -F': ' '/^Description:/ {print $2; exit}')
-        echo -e "${GN}Purpose:${CL} ${DESC:-No description available.}"
+        DESC=$(apt-cache show "$PKG" 2>/dev/null | awk -F': ' '/^Description/ {print $2; exit}')
+        DESC=${DESC:-"No description available."}
+        echo -e "${GN}Purpose:${CL} ${DESC}"
         echo -e "${BL}Changes:${CL}"
         apt-get changelog "$PKG" 2>/dev/null | sed -e '/^ -- /q' | grep -E '^\s+\*' | head -n 8 || echo "  No details available."
         echo "----------------------------------------"
