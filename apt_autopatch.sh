@@ -177,21 +177,21 @@ if [ "$TOTAL_PKGS" -gt 0 ]; then
     echo ""
     read -r -n 1 -s -p "$(echo -e "  ${C_WARN}${ICON_ARROW}${C_RESET} Press any key to start the upgrade ${C_DIM}(CTRL+C to cancel)${C_RESET}...")"
     echo ""
+
+    # ==========================================================================
+    # STEP 3: UPGRADE SYSTEM
+    # ==========================================================================
+    print_step "3/5" "Upgrading system (apt full-upgrade)"
+    sudo apt full-upgrade
+
+    # ==========================================================================
+    # STEP 4: CLEAN UP SYSTEM
+    # ==========================================================================
+    print_step "4/5" "Removing unused packages & cleaning cache"
+    sudo apt --purge autoremove && sudo apt clean
 else
     echo -e "  ${C_OK}${ICON_OK} System is already up to date – no package updates available.${C_RESET}"
 fi
-
-# ==============================================================================
-# STEP 3: UPGRADE SYSTEM
-# ==============================================================================
-print_step "3/5" "Upgrading system (apt full-upgrade)"
-sudo apt full-upgrade
-
-# ==============================================================================
-# STEP 4: CLEAN UP SYSTEM
-# ==============================================================================
-print_step "4/5" "Removing unused packages & cleaning cache"
-sudo apt --purge autoremove && sudo apt clean
 
 # ==============================================================================
 # STEP 5: OPTIMIZE FILE SYSTEM (SSD TRIM)
@@ -245,7 +245,11 @@ if [ -f /var/run/reboot-required ]; then
     done
 else
     echo -e "${C_OK}╭──────────────────────────────────────────────────────────────────────╮${C_RESET}"
-    echo -e "${C_OK}│  ${ICON_OK}  FINISHED — NO REBOOT REQUIRED                                    │${C_RESET}"
+    if [ "$TOTAL_PKGS" -eq 0 ]; then
+        echo -e "${C_OK}│  ${ICON_OK}  FINISHED — NO UPDATES AVAILABLE, NOTHING TO DO                   │${C_RESET}"
+    else
+        echo -e "${C_OK}│  ${ICON_OK}  FINISHED — NO REBOOT REQUIRED                                    │${C_RESET}"
+    fi
     echo -e "${C_OK}╰──────────────────────────────────────────────────────────────────────╯${C_RESET}"
     echo ""
 fi
