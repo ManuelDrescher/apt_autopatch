@@ -15,8 +15,3 @@
     * Reboot now
     * Reboot to a specific time
     * Do nothing
-
----
-* This script is not complex and can easily be modified to your needs
-* The script can be aborted on every step
----
